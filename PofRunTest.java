@@ -1,3 +1,6 @@
+// Testing a nutrition calculator on site "http://www.netogreen.co.il". Using POF.
+
+
 package pofExr;
 
 import java.awt.AWTException;
@@ -27,30 +30,19 @@ public class PofRunTest {
 	public static String dialogBox;
 	public static String dropMenu;
 	public static String menuString [];
-	public static Object keywordsObject []  = {"ìçí","12345","ìçí","àáâãä","900000000",};
+	public static Object keywordsObject []  = {"Ã¬Ã§Ã­","12345","Ã¬Ã§Ã­","Ã Ã¡Ã¢Ã£Ã¤","900000000",};
 	
 	public static PofVariables pofVars;
 	
 	
 	public static void startDriver() {
-//		System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\eclipse-workspace\\SELENIUM//chromedriver.exe");
-//		webDriver = new ChromeDriver();
-		
-//		System.setProperty("webdriver.ie.driver", "webdrivers\\IEDriverServer_\\IEDriverServer.exe");
-//		InternetExplorerOptions explorerOptions = new InternetExplorerOptions();
-//		explorerOptions.disableNativeEvents();
-//		explorerOptions.introduceFlakinessByIgnoringSecurityDomains();
-//		explorerOptions.ignoreZoomSettings();
-//		webDriver = new InternetExplorerDriver(explorerOptions);
-		
-		
-		
+// Starting Firefox
 	FirefoxOptions firefoxOptions = new FirefoxOptions();
     firefoxOptions.setCapability("marionette", true);
 	webDriver = new FirefoxDriver(firefoxOptions);
 		
 		webDriver.navigate().to("https://google.com");
-		Robot robot;
+		Robot robot; // opens new tabs
 		try {
 			robot = new Robot();
 			for (int i = 0; i < 5; i++) {
@@ -63,16 +55,7 @@ public class PofRunTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-//		ArrayList<String> allTabs = new ArrayList<String> (webDriver.getWindowHandles());
-//		webDriver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
-//		webDriver.switchTo().window(allTabs.get(countActions));
-
-		
-//		webDriver.get("http://www.netogreen.co.il/Calculators/Nutrition-Calories.aspx");
-//
-//		webDriver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-		
+		// gets pof variables:
 		pofVars = new PofVariables();
 		pofVars = PageFactory.initElements(webDriver, PofVariables.class);
 		
@@ -87,7 +70,7 @@ public class PofRunTest {
 		
 	}
 	
-	public static String dialogBox() {
+	public static String dialogBox() { // here testing options selection goes (words, digits, anything):
 		dialogBox = (String) JOptionPane.showInputDialog(
 				null,
 				"Choose an option:",
@@ -105,7 +88,7 @@ public class PofRunTest {
 	
 	public static String dropMenu() {
 		
-		pofVars.searchField.sendKeys("ìçí");
+		pofVars.searchField.sendKeys("Ã¬Ã§Ã­");
 		
 		webDriver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		pofVars.searchButton.click();
@@ -160,9 +143,7 @@ public class PofRunTest {
 		webDriver.get("http://www.netogreen.co.il/Calculators/Nutrition-Calories.aspx");
 
 		webDriver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-		
-//		startDriver();
-		
+				
 		webDriver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 				
 			if (countActions == 1 || countActions == 2) {
@@ -187,8 +168,6 @@ public class PofRunTest {
 				webDriver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 				webDriver.findElement(By.xpath( "//*[@id=\"mesComvo\"]/option[1]" ) ).click();
 				webDriver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-//				webDriver.findElement(By.id("quantity")).sendKeys("3");
-//				webDriver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 				webDriver.findElement(By.xpath( "//*[@id=\"food_search_wrapper\"]/div[3]/table/tbody/tr/td[6]/input" ) ).click();
 				
 			} else if (countActions == 4) {
